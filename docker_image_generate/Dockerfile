@@ -80,4 +80,4 @@ RUN git clone https://github.com/blechschmidt/massdns.git && \
 # ------------------------------------------------------------------
 # Run your program
 # ------------------------------------------------------------------
-ENTRYPOINT ["python3", "-u", "recon_tool.py"]
+ENTRYPOINT ["python3", "-u", "docker_tool.py"]
