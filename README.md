@@ -81,7 +81,10 @@ docker build -t passive_recon_tool .
 
 # ⚡ Usage
 
-
+- While running the python file be sure that the config.yaml is in the same directory as the python file is
+- While creating the docker image put the config.yaml in the same directory where the Docker is present
+- To run the tool atleast shodan and github api key is required
+  
 ```
 usage: passive_recon_tool.py [-h] [-o OUTPUT_DIR] target
 
