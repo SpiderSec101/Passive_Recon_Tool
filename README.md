@@ -34,10 +34,6 @@ It supports running directly using Python or inside an isolated Docker container
 
 ---
 
-## 📂 Project Structure
-
----
-
 # 🚀 Installation
 
 ## Option 1 — Python
