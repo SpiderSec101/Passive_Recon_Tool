@@ -591,7 +591,7 @@ def domain_type_separator():
     all_apex_file.close()
     all_sub_file.close()
     total_sub = subprocess.run(f"wc -l {base_dir}/{target_domain}/assets/Domains/subdomains.txt", shell=True, capture_output=True, text=True)
-    print("[+] Total numbers of live subdomains found => ", total_sub.stdout)
+    print("[+] Total numbers of subdomains found => ", total_sub.stdout)
 
 
 def live_domains_finder(domain_type):
