@@ -630,16 +630,30 @@ def harvester():
     print("[+] Done theHarvester tool")
 
 
+
+def merge_files(file1, file2, output_file):
+    with open(output_file, "w", encoding="utf-8") as outfile:
+        for filename in (file1, file2):
+            with open(filename, "r", encoding="utf-8") as infile:
+                outfile.write(infile.read())
+
+
 def dnsgen():
     dnsgen_decision = input("[+] Do you want to run DNSGen? (y/n) => ")
     if dnsgen_decision == 'y':
         print("[+] Running Dnsgen, it will take some times, grab a coffee for yourself :-)")
         dnsgen_cmd = f"cat {base_dir}/{target_domain}/assets/Domains/live_subdomains.txt | dnsgen - | puredns resolve -r {working_dir}/resolvers.txt | sort -u > {base_dir}/{target_domain}/assets/Domains/dnsgen.txt"
         subprocess.run(dnsgen_cmd, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE, text=True)
+        file_1 = f"{base_dir}/{target_domain}/assets/Domains/dnsgen.txt"
+        file_2 = f"{base_dir}/{target_domain}/assets/Domains/live_subdomains.txt"
+        main_file = f"{base_dir}/{target_domain}/assets/Domains/main.txt"
+        merge_files(file_1, file_2, main_file)
+
     elif dnsgen_decision == 'n': print("[+] Skipped the tool Dnsgen")
     else: 
         print("[+] Not a valid option X")
         dnsgen()
+
 
 
 # Threads
@@ -729,23 +743,35 @@ def live_domains_finder(domain_type):
 
 
 
+
 def take_ss():
     ss_question = input("Do you want to take screenshots of the live subdomains? (y/n) => ")
+    
     if ss_question.lower() == 'y':
+        
         if Path(f"{working_dir}/resume.cfg").is_file():
             #print("File exists")
-            ss_cmd = f"/go/bin/httpx -l {base_dir}/{target_domain}/assets/Domains/live_subdomains.txt -ss -system-chrome -srd {base_dir}/{target_domain}/assets/ss -silent -threads 1 -timeout 20 -retries 1 -no-screenshot-full-page -resume"
-        else:
-            ss_cmd = f"/go/bin/httpx -l {base_dir}/{target_domain}/assets/Domains/live_subdomains.txt -ss -system-chrome -srd {base_dir}/{target_domain}/assets/ss -silent -threads 1 -timeout 20 -retries 1 -no-screenshot-full-page"
 
+            if Path(f"{base_dir}/{target_domain}/assets/Domains/main.txt").is_file():
+                ss_cmd = f"/go/bin/httpx -l {base_dir}/{target_domain}/assets/Domains/main.txt -ss -system-chrome -srd {base_dir}/{target_domain}/assets/ss -silent -threads 1 -timeout 20 -retries 1 -no-screenshot-full-page -resume"
+            else:
+                ss_cmd = f"/go/bin/httpx -l {base_dir}/{target_domain}/assets/Domains/live_subdomains.txt -ss -system-chrome -srd {base_dir}/{target_domain}/assets/ss -silent -threads 1 -timeout 20 -retries 1 -no-screenshot-full-page -resume"
+        
+        else:
+
+            if Path(f"{base_dir}/{target_domain}/assets/Domains/main.txt").is_file():
+                ss_cmd = f"/go/bin/httpx -l {base_dir}/{target_domain}/assets/Domains/main.txt -ss -system-chrome -srd {base_dir}/{target_domain}/assets/ss -silent -threads 1 -timeout 20 -retries 1 -no-screenshot-full-page"
+            else:
+                ss_cmd = f"/go/bin/httpx -l {base_dir}/{target_domain}/assets/Domains/live_subdomains.txt -ss -system-chrome -srd {base_dir}/{target_domain}/assets/ss -silent -threads 1 -timeout 20 -retries 1 -no-screenshot-full-page"
+        
         print("[+] Started taking screenshots")    
         subprocess.run(ss_cmd, shell=True, text=True)
+
     elif ss_question.lower() == 'n':
         print("[+] Not taking scrrenshots...skipped")
     else : 
         print("[+] Invalid option (-_-) ")
         take_ss()
-
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
