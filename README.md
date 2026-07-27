@@ -65,7 +65,7 @@ nano config.yaml
 ```
 ---
 
-## Option 2 — Docker
+## Option 2 — Docker (Recommended)
 
 ### Build the Docker image
 
