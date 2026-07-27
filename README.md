@@ -226,15 +226,6 @@ If you found this project useful:
 
 ---
 
-# 👨‍💻 Author
-
-**Adil Hossain Sana (spider)**
-
-GitHub: https://github.com/SpiderSec101
-
-
----
-
 ## 🌟 Acknowledgements
 
 Thanks to the open-source security community and all the amazing tools that inspired this project.
