@@ -41,8 +41,8 @@ It supports running directly using Python or inside an isolated Docker container
 ### Clone the repository
 
 ```bash
-git clone https://github.com/<username>/<repository>.git
-cd <repository>
+git clone https://github.com/SpiderSec101/Passive_Recon_Tool.git
+cd Passive_Recon_Tool
 ```
 
 ### Create Virtual Environment
@@ -73,9 +73,8 @@ nano config.yaml
 - Atleast provide the shodan and github api keys into the config.yaml file 
 
 ```bash
-git clone https://github.com/<username>/<repository>.git
-cd <repository>
-cd docker_image_generate
+git clone https://github.com/SpiderSec101/Passive_Recon_Tool.git
+cd Passive_Recon_Tool/docker_image_generate
 nano config.yaml
 docker build -t passive_recon_tool .
 ```
