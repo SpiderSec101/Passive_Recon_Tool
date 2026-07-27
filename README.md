@@ -58,6 +58,11 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+### Edit the config.yaml file
+
+```bash
+nano config.yaml
+```
 ---
 
 ## Option 2 — Docker
@@ -68,8 +73,10 @@ pip install -r requirements.txt
 - Atleast provide the shodan and github api keys into the config.yaml file 
 
 ```bash
+git clone https://github.com/<username>/<repository>.git
+cd <repository>
 cd docker_image_generate
-
+nano config.yaml
 docker build -t passive_recon_tool .
 ```
 
