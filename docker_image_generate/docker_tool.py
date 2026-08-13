@@ -650,8 +650,8 @@ def take_ss():
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-tool_file_download()
 create_dir_structure()
+tool_file_download()
 #~~~~~~~~~~~~~~~~~ Secrets Setup ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 try :
     config_file_read = open(f'config.yaml', 'r')
