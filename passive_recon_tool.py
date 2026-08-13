@@ -395,7 +395,9 @@ def karma():
 
                     try:
                         data = json.loads(line)
-                    except Exception as e: print(e)
+                    except Exception as e: 
+                        print(e)
+                        continue
 
                     # IPs
                     ip = data.get("ip_str")
@@ -704,8 +706,8 @@ def domain_type_separator():
             i = i.strip()
             if i == target_domain or i.endswith("." + target_domain):
                 all_sub_file.write(i + '\n')
-        else:
-            all_apex_file.write(i + '\n')
+            else:
+                all_apex_file.write(i + '\n')
     all_apex_file.close()
     all_sub_file.close()
     total_sub = subprocess.run(f"wc -l {base_dir}/{target_domain}/assets/Domains/subdomains.txt", shell=True, capture_output=True, text=True)
